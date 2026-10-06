@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import com.example.vibechat.ui.screens.auth.AuthScreen
 import com.example.vibechat.ui.screens.chat.ChatWindowScreen
 import com.example.vibechat.ui.screens.chat.SidebarScreen
+import com.example.vibechat.ui.screens.tabs.ActiveCallDialog
+import com.example.vibechat.ui.screens.tabs.StatusViewerDialog
 import com.example.vibechat.viewmodel.ChatViewModel
 
 @Composable
@@ -37,6 +39,9 @@ fun MainChatScreen(
     val activeMessages by viewModel.activeMessages.collectAsState()
     val typingStatus by viewModel.typingStatus.collectAsState()
 
+    val activeStory by viewModel.activeViewingStory.collectAsState()
+    val activeCall by viewModel.activeCall.collectAsState()
+
     if (currentUser == null) {
         AuthScreen(
             isBusy = isAuthBusy,
@@ -51,6 +56,26 @@ fun MainChatScreen(
     }
 
     val user = currentUser!!
+
+    // Active Status Viewer Dialog
+    if (activeStory != null) {
+        StatusViewerDialog(
+            story = activeStory!!,
+            onDismiss = { viewModel.dismissStory() },
+            onReply = { reply -> viewModel.replyToStory(reply) }
+        )
+    }
+
+    // Active Simulated Voice/Video Call Dialog
+    if (activeCall != null) {
+        val call = activeCall!!
+        ActiveCallDialog(
+            contactName = call.contactName,
+            avatarColor = call.avatarColor,
+            callType = call.callType,
+            onEndCall = { viewModel.endCall() }
+        )
+    }
 
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
         val isWideScreen = maxWidth >= 720.dp
@@ -87,6 +112,7 @@ fun MainChatScreen(
                             isTyping = isTyping,
                             onSendMessage = { viewModel.sendMessage(it) },
                             onBack = { viewModel.selectContact(null) },
+                            onStartCall = { name, color, type -> viewModel.startCall(name, color, type) },
                             showBackButton = false,
                             isDarkMode = isDarkMode
                         )
@@ -123,6 +149,7 @@ fun MainChatScreen(
                     isTyping = isTyping,
                     onSendMessage = { viewModel.sendMessage(it) },
                     onBack = { viewModel.selectContact(null) },
+                    onStartCall = { name, color, type -> viewModel.startCall(name, color, type) },
                     showBackButton = true,
                     isDarkMode = isDarkMode
                 )

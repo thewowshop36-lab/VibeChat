@@ -78,6 +78,7 @@ fun ChatWindowScreen(
     isTyping: Boolean,
     onSendMessage: (String) -> Unit,
     onBack: () -> Unit,
+    onStartCall: (String, Long, com.example.vibechat.data.model.CallType) -> Unit = { _, _, _ -> },
     showBackButton: Boolean = true,
     isDarkMode: Boolean = false,
     modifier: Modifier = Modifier
@@ -156,7 +157,9 @@ fun ChatWindowScreen(
                     )
                 }
 
-                IconButton(onClick = {}) {
+                IconButton(onClick = {
+                    onStartCall(otherUser.username, otherUser.avatarColorHex, com.example.vibechat.data.model.CallType.VIDEO)
+                }) {
                     Icon(
                         imageVector = Icons.Default.Videocam,
                         contentDescription = "Video Call",
@@ -164,7 +167,9 @@ fun ChatWindowScreen(
                     )
                 }
 
-                IconButton(onClick = {}) {
+                IconButton(onClick = {
+                    onStartCall(otherUser.username, otherUser.avatarColorHex, com.example.vibechat.data.model.CallType.AUDIO)
+                }) {
                     Icon(
                         imageVector = Icons.Default.Call,
                         contentDescription = "Audio Call",
