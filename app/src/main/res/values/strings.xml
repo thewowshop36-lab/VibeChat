@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">VibeChat</string>
+    <string name="app_tagline">Fast, modern direct messaging</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="search_users">Search users</string>
+    <string name="type_a_message">Type a message</string>
+    <string name="send">Send</string>
+    <string name="logout">Logout</string>
+    <string name="online">online</string>
+    <string name="offline">offline</string>
+    <string name="no_users_found">No users found</string>
+    <string name="select_contact_prompt">Select a contact to start chatting</string>
+</resources>

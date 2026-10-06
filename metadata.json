@@ -1,0 +1,6 @@
+{
+  "name": "VibeChat",
+  "description": "Real-time chat messenger with direct messaging, contacts list, search, presence status, and rich WhatsApp-inspired styling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,18 +1,19 @@
-# WA Chat (React + Vite + Tailwind + Supabase)
+# VibeChat (Android - Kotlin & Jetpack Compose)
 
-## 1. Supabase setup
-1. Create a project at https://supabase.com.
-2. SQL Editor -> paste and run `supabase/schema.sql`.
-3. (Dev convenience) Authentication -> Providers -> Email -> turn off "Confirm email" so sign-up logs in immediately.
-4. Project Settings -> API -> copy the Project URL and the `anon` public key.
+VibeChat is a modern, responsive chat messenger application built for Android using **Kotlin**, **Jetpack Compose**, **Material Design 3**, and **Room Database**.
 
-## 2. Run locally
-    cp .env.example .env     # fill in the two values
-    npm install
-    npm run dev              # open two browsers/incognito windows with two accounts
+## Features Ported from Original Web App
+- **Authentication**: Sign in and Sign up with validation, account switching, and demo accounts.
+- **Direct Messaging**: 1-on-1 real-time conversation stream with WhatsApp-inspired message bubbles, delivered indicators, and formatted timestamps.
+- **Contacts & Discovery**: Contact directory with active presence indicators (online/offline badges) and instant search filtering.
+- **Responsive Layout**: Single-pane navigation for phones with `BackHandler`, and adaptive dual-pane side-by-side layout for tablets and landscape displays.
+- **Local Persistence**: Full offline-first data caching and persistence using Room (SQLite) with pre-seeded starter contacts and conversations.
+- **Dynamic Theming**: Light and Dark theme modes with WhatsApp-inspired color accents.
+- **Interactive Simulation**: Contextual automatic replies from contacts with dynamic typing indicator status.
 
-## 3. Deploy (Vercel / Netlify)
-- Push to GitHub, import the repo. Build command: `npm run build`, output dir: `dist`.
-- Add env vars `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in the host's dashboard, then redeploy.
-- Supabase -> Authentication -> URL Configuration: set Site URL to your deployed URL.
-- Never put the `service_role` key in the frontend.
+## Architecture
+- **Language**: Kotlin 2.1.0
+- **UI Framework**: Jetpack Compose with Material 3
+- **Data Layer**: Room Database (`UserDao`, `MessageDao`, `AppDatabase`), Repository Pattern
+- **State Management**: `ViewModel`, `StateFlow`, and `collectAsState`
+- **Iconography**: Custom Material 3 Adaptive Launcher Icon
